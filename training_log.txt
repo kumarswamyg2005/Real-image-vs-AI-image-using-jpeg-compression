@@ -1,0 +1,602 @@
+✅ Imports complete!
+✅ BitstreamFeatureExtractor defined
+
+🔍 Scanning local datasets folder...
+
+📁 Found REAL image folders:
+   datasets/1/Dataset/Train/Real (70,001 images)
+   datasets/1/Dataset/Test/Real (5,413 images)
+   datasets/1/Dataset/Validation/Real (3,645 images)
+   datasets/1/archive (3)/train/REAL (50,000 images)
+   datasets/1/archive (3)/test/REAL (10,000 images)
+   datasets/1/real_vs_fake/real-vs-fake/train/real (50,000 images)
+   datasets/1/real_vs_fake/real-vs-fake/test/real (10,000 images)
+   datasets/1/real_vs_fake/real-vs-fake/valid/real (10,000 images)
+   datasets/1/archive (1)/real (589 images)
+
+📁 Found AI/FAKE image folders:
+   datasets/1/Dataset/Train/Fake (70,001 images)
+   datasets/1/Dataset/Test/Fake (5,492 images)
+   datasets/1/Dataset/Validation/Fake (19,641 images)
+   datasets/1/archive (3)/train/FAKE (50,000 images)
+   datasets/1/archive (3)/test/FAKE (10,000 images)
+   datasets/1/real_vs_fake/real-vs-fake/train/fake (50,000 images)
+   datasets/1/real_vs_fake/real-vs-fake/test/fake (10,000 images)
+   datasets/1/real_vs_fake/real-vs-fake/valid/fake (10,000 images)
+   datasets/1/archive (1)/fake (700 images)
+
+🔍 Extracting bitstream features from REAL images...
+⏰ This will take 2-3 hours for ~300k real images...
+
+Real folders:   0%|          | 0/9 [00:00<?, ?it/s]
+Real folders:  11%|█         | 1/9 [44:48<5:58:27, 2688.46s/it]
+Real folders:  22%|██▏       | 2/9 [47:59<2:22:16, 1219.44s/it]
+Real folders:  33%|███▎      | 3/9 [50:06<1:12:02, 720.34s/it] 
+Real folders:  44%|████▍     | 4/9 [51:19<38:45, 465.12s/it]  
+Real folders:  56%|█████▌    | 5/9 [51:34<20:10, 302.62s/it]
+Real folders:  67%|██████▋   | 6/9 [1:24:30<43:34, 871.63s/it]
+Real folders:  78%|███████▊  | 7/9 [1:31:05<23:51, 715.73s/it]
+Real folders:  89%|████████▉ | 8/9 [1:37:40<10:13, 613.70s/it]
+Real folders: 100%|██████████| 9/9 [1:38:07<00:00, 430.33s/it]
+Real folders: 100%|██████████| 9/9 [1:38:07<00:00, 654.19s/it]
+   Processed 10,000 real images...
+   Processed 20,000 real images...
+   Processed 30,000 real images...
+   Processed 40,000 real images...
+   Processed 50,000 real images...
+   Processed 60,000 real images...
+   Processed 70,000 real images...
+   Processed 80,000 real images...
+   Processed 90,000 real images...
+   Processed 100,000 real images...
+   Processed 110,000 real images...
+   Processed 120,000 real images...
+   Processed 130,000 real images...
+   Processed 140,000 real images...
+   Processed 150,000 real images...
+   Processed 160,000 real images...
+   Processed 170,000 real images...
+   Processed 180,000 real images...
+   Processed 190,000 real images...
+   Processed 200,000 real images...
+✅ Extracted features from 209,648 real images
+
+🔍 Extracting bitstream features from AI/FAKE images...
+⏰ This will take 2-3 hours for ~300k fake images...
+
+Fake folders:   0%|          | 0/9 [00:00<?, ?it/s]Fake folders:  11%|█         | 1/9 [43:01<5:44:14, 2581.79s/it]Fake folders:  22%|██▏       | 2/9 [46:25<2:18:00, 1182.97s/it]Fake folders:  33%|███▎      | 3/9 [58:18<1:36:50, 968.35s/it] Fake folders:  44%|████▍     | 4/9 [59:32<51:16, 615.33s/it]  Fake folders:  56%|█████▌    | 5/9 [59:47<26:34, 398.62s/it]Fake folders:  67%|██████▋   | 6/9 [1:32:38<46:40, 933.54s/it]Fake folders:  78%|███████▊  | 7/9 [1:39:13<25:14, 757.32s/it]Fake folders:  89%|████████▉ | 8/9 [1:45:49<10:42, 642.39s/it]Fake folders: 100%|██████████| 9/9 [1:46:22<00:00, 451.70s/it]Fake folders: 100%|██████████| 9/9 [1:46:22<00:00, 709.13s/it]
+[Parallel(n_jobs=-1)]: Using backend ThreadingBackend with 8 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  34 tasks      | elapsed:   24.7s
+[Parallel(n_jobs=-1)]: Done 184 tasks      | elapsed:  2.0min
+[Parallel(n_jobs=-1)]: Done 300 out of 300 | elapsed:  3.3min finished
+[Parallel(n_jobs=8)]: Using backend ThreadingBackend with 8 concurrent workers.
+[Parallel(n_jobs=8)]: Done  34 tasks      | elapsed:    0.2s
+[Parallel(n_jobs=8)]: Done 184 tasks      | elapsed:    0.7s
+[Parallel(n_jobs=8)]: Done 300 out of 300 | elapsed:    1.2s finished
+[Parallel(n_jobs=8)]: Using backend ThreadingBackend with 8 concurrent workers.
+[Parallel(n_jobs=8)]: Done  34 tasks      | elapsed:    0.2s
+[Parallel(n_jobs=8)]: Done 184 tasks      | elapsed:    0.8s
+[Parallel(n_jobs=8)]: Done 300 out of 300 | elapsed:    1.2s finished
+   Processed 10,000 fake images...
+   Processed 20,000 fake images...
+   Processed 30,000 fake images...
+   Processed 40,000 fake images...
+   Processed 50,000 fake images...
+   Processed 60,000 fake images...
+   Processed 70,000 fake images...
+   Processed 80,000 fake images...
+   Processed 90,000 fake images...
+   Processed 100,000 fake images...
+   Processed 110,000 fake images...
+   Processed 120,000 fake images...
+   Processed 130,000 fake images...
+   Processed 140,000 fake images...
+   Processed 150,000 fake images...
+   Processed 160,000 fake images...
+   Processed 170,000 fake images...
+   Processed 180,000 fake images...
+   Processed 190,000 fake images...
+   Processed 200,000 fake images...
+   Processed 210,000 fake images...
+   Processed 220,000 fake images...
+✅ Extracted features from 225,834 AI images
+
+📊 Dataset Summary:
+   Total samples: 435,482
+   REAL images: 209,648
+   AI images: 225,834
+   Features: 70
+
+📊 Splitting into train/test sets (80/20)...
+   Training: 348,385 samples
+   Testing: 87,097 samples
+🔄 Normalizing features...
+✅ Data prepared for training
+
+============================================================
+🌲 Training Random Forest (300 trees)
+⏰ Estimated time: 2-3 hours
+============================================================
+✅ Random Forest Accuracy: 75.94%
+
+============================================================
+🎯 Training Gradient Boosting (200 trees)
+⏰ Estimated time: 1-2 hours
+============================================================
+      Iter       Train Loss   Remaining Time 
+         1           1.3527           36.63m
+         2           1.3257           36.06m
+         3           1.3027           35.76m
+         4           1.2822           35.50m
+         5           1.2641           35.35m
+         6           1.2495           35.20m
+         7           1.2353           35.09m
+         8           1.2238           35.03m
+         9           1.2132           34.86m
+        10           1.2044           34.81m
+        20           1.1411           33.24m
+        30           1.1055           31.51m
+        40           1.0832           29.83m
+        50           1.0646           28.03m
+        60           1.0478           26.17m
+        70           1.0347           24.31m
+        80           1.0223           22.45m
+        90           1.0109           20.58m
+       100           1.0006           18.72m
+       200           0.9262            0.00s
+✅ Gradient Boosting Accuracy: 74.28%
+
+============================================================
+🧠 Training Neural Network (1000 iterations)
+⏰ Estimated time: 1-2 hours
+============================================================
+Iteration 1, loss = 0.56208867
+Iteration 2, loss = 0.53236540
+Iteration 3, loss = 0.52201829
+Iteration 4, loss = 0.51384798
+Iteration 5, loss = 0.50800618
+Iteration 6, loss = 0.50256191
+Iteration 7, loss = 0.49820218
+Iteration 8, loss = 0.49427435
+Iteration 9, loss = 0.49064449
+Iteration 10, loss = 0.48674443
+Iteration 11, loss = 0.48387057
+Iteration 12, loss = 0.47984655
+Iteration 13, loss = 0.47694362
+Iteration 14, loss = 0.47404033
+Iteration 15, loss = 0.47092418
+Iteration 16, loss = 0.46754419
+Iteration 17, loss = 0.46550863
+Iteration 18, loss = 0.46232705
+Iteration 19, loss = 0.45912387
+Iteration 20, loss = 0.45632878
+Iteration 21, loss = 0.45374788
+Iteration 22, loss = 0.45157223
+Iteration 23, loss = 0.44870318
+Iteration 24, loss = 0.44629430
+Iteration 25, loss = 0.44384583
+Iteration 26, loss = 0.44159887
+Iteration 27, loss = 0.43958056
+Iteration 28, loss = 0.43743909
+Iteration 29, loss = 0.43509510
+Iteration 30, loss = 0.43260623
+Iteration 31, loss = 0.43034489
+Iteration 32, loss = 0.42868997
+Iteration 33, loss = 0.42683571
+Iteration 34, loss = 0.42496523
+Iteration 35, loss = 0.42347730
+Iteration 36, loss = 0.42151205
+Iteration 37, loss = 0.41952561
+Iteration 38, loss = 0.41750103
+Iteration 39, loss = 0.41528101
+Iteration 40, loss = 0.41409926
+Iteration 41, loss = 0.41275746
+Iteration 42, loss = 0.41082334
+Iteration 43, loss = 0.40919205
+Iteration 44, loss = 0.40821758
+Iteration 45, loss = 0.40650254
+Iteration 46, loss = 0.40482774
+Iteration 47, loss = 0.40362934
+Iteration 48, loss = 0.40164266
+Iteration 49, loss = 0.40063358
+Iteration 50, loss = 0.39915004
+Iteration 51, loss = 0.39806117
+Iteration 52, loss = 0.39669904
+Iteration 53, loss = 0.39543253
+Iteration 54, loss = 0.39407237
+Iteration 55, loss = 0.39297706
+Iteration 56, loss = 0.39190302
+Iteration 57, loss = 0.39077908
+Iteration 58, loss = 0.38963599
+Iteration 59, loss = 0.38884933
+Iteration 60, loss = 0.38743117
+Iteration 61, loss = 0.38616586
+Iteration 62, loss = 0.38515218
+Iteration 63, loss = 0.38386266
+Iteration 64, loss = 0.38324377
+Iteration 65, loss = 0.38213533
+Iteration 66, loss = 0.38094244
+Iteration 67, loss = 0.37961816
+Iteration 68, loss = 0.37914722
+Iteration 69, loss = 0.37766828
+Iteration 70, loss = 0.37731404
+Iteration 71, loss = 0.37603055
+Iteration 72, loss = 0.37502462
+Iteration 73, loss = 0.37412813
+Iteration 74, loss = 0.37305101
+Iteration 75, loss = 0.37224904
+Iteration 76, loss = 0.37131227
+Iteration 77, loss = 0.37109600
+Iteration 78, loss = 0.36990361
+Iteration 79, loss = 0.36920373
+Iteration 80, loss = 0.36909002
+Iteration 81, loss = 0.36707890
+Iteration 82, loss = 0.36695819
+Iteration 83, loss = 0.36583905
+Iteration 84, loss = 0.36525064
+Iteration 85, loss = 0.36432639
+Iteration 86, loss = 0.36318158
+Iteration 87, loss = 0.36263765
+Iteration 88, loss = 0.36219794
+Iteration 89, loss = 0.36126236
+Iteration 90, loss = 0.36037610
+Iteration 91, loss = 0.36009130
+Iteration 92, loss = 0.35987966
+Iteration 93, loss = 0.35869304
+Iteration 94, loss = 0.35767773
+Iteration 95, loss = 0.35735210
+Iteration 96, loss = 0.35692906
+Iteration 97, loss = 0.35619836
+Iteration 98, loss = 0.35580572
+Iteration 99, loss = 0.35559807
+Iteration 100, loss = 0.35390286
+Iteration 101, loss = 0.35408266
+Iteration 102, loss = 0.35258872
+Iteration 103, loss = 0.35282319
+Iteration 104, loss = 0.35251298
+Iteration 105, loss = 0.35179468
+Iteration 106, loss = 0.35092219
+Iteration 107, loss = 0.35072880
+Iteration 108, loss = 0.34985673
+Iteration 109, loss = 0.34905896
+Iteration 110, loss = 0.34868784
+Iteration 111, loss = 0.34831838
+Iteration 112, loss = 0.34799935
+Iteration 113, loss = 0.34694617
+Iteration 114, loss = 0.34695118
+Iteration 115, loss = 0.34527564
+Iteration 116, loss = 0.34562429
+Iteration 117, loss = 0.34481595
+Iteration 118, loss = 0.34463859
+Iteration 119, loss = 0.34475781
+Iteration 120, loss = 0.34327809
+Iteration 121, loss = 0.34328612
+Iteration 122, loss = 0.34272702
+Iteration 123, loss = 0.34249268
+Iteration 124, loss = 0.34194557
+Iteration 125, loss = 0.34166815
+Iteration 126, loss = 0.34086493
+Iteration 127, loss = 0.34060669
+Iteration 128, loss = 0.33936798
+Iteration 129, loss = 0.33942894
+Iteration 130, loss = 0.33891519
+Iteration 131, loss = 0.33789000
+Iteration 132, loss = 0.33837700
+Iteration 133, loss = 0.33697822
+Iteration 134, loss = 0.33682565
+Iteration 135, loss = 0.33699387
+Iteration 136, loss = 0.33624422
+Iteration 137, loss = 0.33653626
+Iteration 138, loss = 0.33475144
+Iteration 139, loss = 0.33554492
+Iteration 140, loss = 0.33538389
+Iteration 141, loss = 0.33438000
+Iteration 142, loss = 0.33469006
+Iteration 143, loss = 0.33385898
+Iteration 144, loss = 0.33302261
+Iteration 145, loss = 0.33286904
+Iteration 146, loss = 0.33263739
+Iteration 147, loss = 0.33244163
+Iteration 148, loss = 0.33168224
+Iteration 149, loss = 0.33116630
+Iteration 150, loss = 0.33093362
+Iteration 151, loss = 0.33095062
+Iteration 152, loss = 0.32982947
+Iteration 153, loss = 0.32950398
+Iteration 154, loss = 0.32982641
+Iteration 155, loss = 0.32982538
+Iteration 156, loss = 0.32864592
+Iteration 157, loss = 0.32843579
+Iteration 158, loss = 0.32809180
+Iteration 159, loss = 0.32795519
+Iteration 160, loss = 0.32715253
+Iteration 161, loss = 0.32742661
+Iteration 162, loss = 0.32690091
+Iteration 163, loss = 0.32638784
+Iteration 164, loss = 0.32550893
+Iteration 165, loss = 0.32598469
+Iteration 166, loss = 0.32560051
+Iteration 167, loss = 0.32541274
+Iteration 168, loss = 0.32549409
+Iteration 169, loss = 0.32440873
+Iteration 170, loss = 0.32418173
+Iteration 171, loss = 0.32463462
+Iteration 172, loss = 0.32356241
+Iteration 173, loss = 0.32318076
+Iteration 174, loss = 0.32272666
+Iteration 175, loss = 0.32376938
+Iteration 176, loss = 0.32277084
+Iteration 177, loss = 0.32187879
+Iteration 178, loss = 0.32217252
+Iteration 179, loss = 0.32165515
+Iteration 180, loss = 0.32124200
+Iteration 181, loss = 0.32113095
+Iteration 182, loss = 0.32103663
+Iteration 183, loss = 0.32027452
+Iteration 184, loss = 0.32038377
+Iteration 185, loss = 0.31965908
+Iteration 186, loss = 0.32045998
+Iteration 187, loss = 0.31998950
+Iteration 188, loss = 0.31913532
+Iteration 189, loss = 0.31886061
+Iteration 190, loss = 0.31891440
+Iteration 191, loss = 0.31815921
+Iteration 192, loss = 0.31779730
+Iteration 193, loss = 0.31751724
+Iteration 194, loss = 0.31713133
+Iteration 195, loss = 0.31750881
+Iteration 196, loss = 0.31743395
+Iteration 197, loss = 0.31640933
+Iteration 198, loss = 0.31625692
+Iteration 199, loss = 0.31579997
+Iteration 200, loss = 0.31637733
+Iteration 201, loss = 0.31551531
+Iteration 202, loss = 0.31557783
+Iteration 203, loss = 0.31568073
+Iteration 204, loss = 0.31544874
+Iteration 205, loss = 0.31521810
+Iteration 206, loss = 0.31468425
+Iteration 207, loss = 0.31470902
+Iteration 208, loss = 0.31437048
+Iteration 209, loss = 0.31382651
+Iteration 210, loss = 0.31435114
+Iteration 211, loss = 0.31325036
+Iteration 212, loss = 0.31361977
+Iteration 213, loss = 0.31288473
+Iteration 214, loss = 0.31280881
+Iteration 215, loss = 0.31260832
+Iteration 216, loss = 0.31320191
+Iteration 217, loss = 0.31271811
+Iteration 218, loss = 0.31204849
+Iteration 219, loss = 0.31167229
+Iteration 220, loss = 0.31140158
+Iteration 221, loss = 0.31146159
+Iteration 222, loss = 0.31116969
+Iteration 223, loss = 0.31112999
+Iteration 224, loss = 0.31103602
+Iteration 225, loss = 0.31069375
+Iteration 226, loss = 0.31058737
+Iteration 227, loss = 0.31023311
+Iteration 228, loss = 0.30996581
+Iteration 229, loss = 0.30995927
+Iteration 230, loss = 0.30967081
+Iteration 231, loss = 0.30939905
+Iteration 232, loss = 0.30905630
+Iteration 233, loss = 0.30890199
+Iteration 234, loss = 0.30865010
+Iteration 235, loss = 0.30793547
+Iteration 236, loss = 0.30858098
+Iteration 237, loss = 0.30873740
+Iteration 238, loss = 0.30777764
+Iteration 239, loss = 0.30793167
+Iteration 240, loss = 0.30685519
+Iteration 241, loss = 0.30841138
+Iteration 242, loss = 0.30764006
+Iteration 243, loss = 0.30677979
+Iteration 244, loss = 0.30677617
+Iteration 245, loss = 0.30735072
+Iteration 246, loss = 0.30753914
+Iteration 247, loss = 0.30601611
+Iteration 248, loss = 0.30629673
+Iteration 249, loss = 0.30677231
+Iteration 250, loss = 0.30602905
+Iteration 251, loss = 0.30575813
+Iteration 252, loss = 0.30569469
+Iteration 253, loss = 0.30570863
+Iteration 254, loss = 0.30483154
+Iteration 255, loss = 0.30500334
+Iteration 256, loss = 0.30463175
+Iteration 257, loss = 0.30505112
+Iteration 258, loss = 0.30437822
+Iteration 259, loss = 0.30444559
+Iteration 260, loss = 0.30421000
+Iteration 261, loss = 0.30372141
+Iteration 262, loss = 0.30430187
+Iteration 263, loss = 0.30386092
+Iteration 264, loss = 0.30338153
+Iteration 265, loss = 0.30327336
+Iteration 266, loss = 0.30382173
+Iteration 267, loss = 0.30321408
+Iteration 268, loss = 0.30320854
+Iteration 269, loss = 0.30238831
+Iteration 270, loss = 0.30182989
+Iteration 271, loss = 0.30263894
+Iteration 272, loss = 0.30235264
+Iteration 273, loss = 0.30171687
+Iteration 274, loss = 0.30191172
+Iteration 275, loss = 0.30209984
+Iteration 276, loss = 0.30139890
+Iteration 277, loss = 0.30196372
+Iteration 278, loss = 0.30225419
+Iteration 279, loss = 0.30162837
+Iteration 280, loss = 0.30074190
+Iteration 281, loss = 0.30094164
+Iteration 282, loss = 0.30061186
+Iteration 283, loss = 0.30123955
+Iteration 284, loss = 0.30017071
+Iteration 285, loss = 0.30002212
+Iteration 286, loss = 0.30013070
+Iteration 287, loss = 0.29956341
+Iteration 288, loss = 0.30024468
+Iteration 289, loss = 0.29987301
+Iteration 290, loss = 0.29950820
+Iteration 291, loss = 0.29978703
+Iteration 292, loss = 0.29923346
+Iteration 293, loss = 0.29944438
+Iteration 294, loss = 0.29835426
+Iteration 295, loss = 0.29927072
+Iteration 296, loss = 0.29910210
+Iteration 297, loss = 0.29831162
+Iteration 298, loss = 0.29885146
+Iteration 299, loss = 0.29844104
+Iteration 300, loss = 0.29810567
+Iteration 301, loss = 0.29779854
+Iteration 302, loss = 0.29862809
+Iteration 303, loss = 0.29760382
+Iteration 304, loss = 0.29795514
+Iteration 305, loss = 0.29777276
+Iteration 306, loss = 0.29698228
+Iteration 307, loss = 0.29724592
+Iteration 308, loss = 0.29738518
+Iteration 309, loss = 0.29682904
+Iteration 310, loss = 0.29665025
+Iteration 311, loss = 0.29714151
+Iteration 312, loss = 0.29609338
+Iteration 313, loss = 0.29681475
+Iteration 314, loss = 0.29675096
+Iteration 315, loss = 0.29572832
+Iteration 316, loss = 0.29588846
+Iteration 317, loss = 0.29634132
+Iteration 318, loss = 0.29582919
+Iteration 319, loss = 0.29616305
+Iteration 320, loss = 0.29497838
+Iteration 321, loss = 0.29628742
+Iteration 322, loss = 0.29495006
+Iteration 323, loss = 0.29436422
+Iteration 324, loss = 0.29547341
+Iteration 325, loss = 0.29461130
+Iteration 326, loss = 0.29488144
+Iteration 327, loss = 0.29476094
+Iteration 328, loss = 0.29426554
+Iteration 329, loss = 0.29422607
+Iteration 330, loss = 0.29445307
+Iteration 331, loss = 0.29423205
+Iteration 332, loss = 0.29378899
+Iteration 333, loss = 0.29301602
+Iteration 334, loss = 0.29417599
+Iteration 335, loss = 0.29383112
+Iteration 336, loss = 0.29366760
+Iteration 337, loss = 0.29329706
+Iteration 338, loss = 0.29348919
+Iteration 339, loss = 0.29306932
+Iteration 340, loss = 0.29336424
+Iteration 341, loss = 0.29315898
+Iteration 342, loss = 0.29283824
+Iteration 343, loss = 0.29246880
+Iteration 344, loss = 0.29304862
+Iteration 345, loss = 0.29217712
+Iteration 346, loss = 0.29290950
+Iteration 347, loss = 0.29293364
+Iteration 348, loss = 0.29278639
+Iteration 349, loss = 0.29187569
+Iteration 350, loss = 0.29250476
+Iteration 351, loss = 0.29181500
+Iteration 352, loss = 0.29129658
+Iteration 353, loss = 0.29184476
+Iteration 354, loss = 0.29157281
+Iteration 355, loss = 0.29151602
+Iteration 356, loss = 0.29164080
+Iteration 357, loss = 0.29174826
+Iteration 358, loss = 0.29054569
+Iteration 359, loss = 0.29146494
+Iteration 360, loss = 0.29187961
+Iteration 361, loss = 0.29063560
+Iteration 362, loss = 0.29052757
+Iteration 363, loss = 0.29069329
+Iteration 364, loss = 0.29055774
+Iteration 365, loss = 0.29104296
+Iteration 366, loss = 0.29006284
+Iteration 367, loss = 0.29035963
+Iteration 368, loss = 0.28974922
+Iteration 369, loss = 0.28996525
+Iteration 370, loss = 0.29022432
+Iteration 371, loss = 0.29007577
+Iteration 372, loss = 0.28929346
+Iteration 373, loss = 0.28940038
+Iteration 374, loss = 0.28945691
+Iteration 375, loss = 0.29003646
+Iteration 376, loss = 0.28911801
+Iteration 377, loss = 0.28952136
+Iteration 378, loss = 0.28930282
+Iteration 379, loss = 0.28927823
+Iteration 380, loss = 0.28829128
+Iteration 381, loss = 0.28908212
+Iteration 382, loss = 0.28901601
+Iteration 383, loss = 0.28834237
+Iteration 384, loss = 0.28829643
+Iteration 385, loss = 0.28869121
+Iteration 386, loss = 0.28828212
+Iteration 387, loss = 0.28852410
+Iteration 388, loss = 0.28834415
+Iteration 389, loss = 0.28685856
+Iteration 390, loss = 0.28802230
+Iteration 391, loss = 0.28749289
+Iteration 392, loss = 0.28817598
+Iteration 393, loss = 0.28782049
+Iteration 394, loss = 0.28775003
+Iteration 395, loss = 0.28811822
+Iteration 396, loss = 0.28776832
+Iteration 397, loss = 0.28759978
+Iteration 398, loss = 0.28769635
+Iteration 399, loss = 0.28712523
+Iteration 400, loss = 0.28789617
+Training loss did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+✅ Neural Network Accuracy: 71.74%
+
+============================================================
+🏆 MODEL COMPARISON
+============================================================
+   random_forest: 75.94%
+   gradient_boosting: 74.28%
+   neural_network: 71.74%
+
+🏆 Best Model: RANDOM_FOREST
+   Accuracy: 75.94%
+
+📊 Classification Report:
+              precision    recall  f1-score   support
+
+        REAL       0.77      0.72      0.74     41930
+          AI       0.75      0.80      0.77     45167
+
+    accuracy                           0.76     87097
+   macro avg       0.76      0.76      0.76     87097
+weighted avg       0.76      0.76      0.76     87097
+
+
+📈 Confusion Matrix:
+[[30174 11756]
+ [ 9198 35969]]
+✅ Saved confusion matrix to confusion_matrix.png
+
+💾 Saving model...
+
+✅ MODEL SAVED!
+
+📥 Generated files:
+   - bitstream_detector_local.pth (PyTorch format - MAIN FILE)
+   - bitstream_detector_model_local.pkl (model only)
+   - bitstream_scaler_local.pkl (scaler only)
+   - model_info_local.txt (training details)
+   - confusion_matrix.png (visualization)
+
+============================================================
+🎉 TRAINING COMPLETE!
+============================================================
+✨ Final Accuracy: 75.94%
+📊 Trained on: 348,385 images
+🧪 Tested on: 87,097 images
+
+🚀 Ready to use! Test with:
+   python3 test_new_model.py
+============================================================

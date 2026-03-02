@@ -86,7 +86,6 @@ docs/_build/
 datasets/
 data/
 uploads/
-*.pth
 *.pptx
 data/
 uploads/

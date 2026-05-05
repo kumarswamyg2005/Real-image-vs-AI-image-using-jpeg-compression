@@ -1,53 +1,111 @@
-# Real Image vs AI Image Detection Using JPEG Compression Forensics
+# BitstreamGuard: AI-Generated Image Detection with JPEG Forensics
 
-Detect whether an image is **AI-generated** or **real** using JPEG bitstream forensics, sensor pattern noise analysis, and AI model attribution.
+BitstreamGuard detects whether an image is AI-generated or camera-captured by analyzing JPEG compression traces instead of visual content. It uses quantized DCT statistics, quantization artifacts, Benford-law deviation, double-compression periodicity, spectral energy, color, wavelet, texture, edge, and chroma-subsampling signals, then classifies the image with a five-model LightGBM soft-voting ensemble.
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![Flask](https://img.shields.io/badge/Flask-Web%20App-green)
-![Accuracy](https://img.shields.io/badge/Accuracy-86.5%25-brightgreen)
-![Formats](https://img.shields.io/badge/Formats-JPEG%20%7C%20PNG%20%7C%20WebP%20%7C%20HEIC%20%7C%20TIFF%20%7C%20BMP-orange)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Model](https://img.shields.io/badge/Model-LightGBM%20Ensemble-green)
+![Accuracy](https://img.shields.io/badge/Accuracy-94.17%25-brightgreen)
+![AUC](https://img.shields.io/badge/AUC--ROC-0.988-orange)
 
 ---
 
 ## Overview
 
-AI-generated images (from tools like DALL·E 3, Midjourney, Stable Diffusion, Adobe Firefly) leave subtle forensic fingerprints that differ from real camera photos. This project exploits those differences by analyzing:
+Pixel-domain AI detectors often learn generator-specific image artifacts that can break after JPEG recompression, resizing, or generator updates. BitstreamGuard instead examines the compression history of an image: camera photos and AI-generated images leave different statistical traces in the JPEG bitstream.
 
-1. **JPEG Bitstream Forensics** — 70 features from DCT coefficients, quantization tables, blocking artifacts, and Benford's Law statistics
-2. **SPN Sensor Pattern Noise** — Detects camera PRNU (Photo Response Non-Uniformity); AI images have no physical sensor noise
-3. **AI Model Attribution** — Identifies *which* AI model generated the image (DALL-E 3, Midjourney, Stable Diffusion, Firefly)
-4. **Camera Signature Analysis** — Checks aspect ratios and megapixel counts typical of real cameras
-5. **Region Heatmap** — Block-level overlay showing *where* in an image AI patterns are detected
+The detector extracts a 104-dimensional forensic descriptor from twelve feature stages. During training, 91 pairwise interaction features are added, producing a 195-dimensional model input. The final decision is made by a five-seed LightGBM ensemble using soft voting.
 
 ### Key Results
 
-| Metric               | Value    |
-| -------------------- | -------- |
-| Overall Accuracy     | 86.5%    |
-| Real Image Detection | 84.3%    |
-| AI Image Detection   | 88.5%    |
-| False Positive Rate  | 15.7%    |
-| Training Images      | 541,000+ |
+| Metric | Value |
+| --- | --- |
+| Overall Accuracy | 94.17% |
+| Balanced Accuracy | 94.17% |
+| Real Recall / TNR | 95.9% |
+| AI Recall / TPR | 92.5% |
+| False Positive Rate | 4.1% |
+| False Negative Rate | 7.5% |
+| AUC-ROC | 0.988 |
+| MCC | 0.884 |
+| Test Images | 187,827 |
+| CPU Inference | < 50 ms per JPEG image |
+
+Evaluation uses a clean three-way split: 657,391 training images, 93,914 validation images, and 187,827 held-out test images. The balanced dataset contains 939,132 images, split evenly between real and AI-generated samples.
+
+---
+
+## What It Analyzes
+
+| Stage | Feature Group | Dimensions | Signal |
+| --- | ---: | ---: | --- |
+| A | DCT coefficient statistics | 10 | AC coefficient distribution shape |
+| B | Quantization gradients | 4 | 8x8 boundary discontinuities |
+| C | Blocking artifact strength | 3 | JPEG block-edge energy |
+| D | Benford's Law analysis | 10 | First-digit DCT coefficient deviation |
+| E | Double-compression FFT | 4 | Periodicity in DCT histograms |
+| F | Frequency-band energy | 9 | Low/mid/high spectral ratios |
+| G | Normalized DCT histogram | 30 | Full AC coefficient distribution |
+| H | RGB/HSV color statistics | 9 | Channel spread and saturation bias |
+| I | Haar wavelet residuals | 9 | Subband noise structure |
+| J | LBP texture histogram | 10 | Local surface regularity |
+| K | Edge and gradient features | 5 | Sharpness and edge density |
+| L | Chroma subsampling flag | 1 | JPEG header provenance |
+|  | Base descriptor | 104 |  |
+|  | Training interactions | +91 | DCT/quantization feature pairs |
+|  | Model input | 195 |  |
+
+The strongest feature groups in ablation are the normalized DCT histogram, Benford-law features, DCT statistics, and double-compression features. The single highest-gain feature is the double-compression maximum FFT peak, which captures re-quantization artifacts in the DCT histogram.
+
+---
+
+## Model Architecture
+
+1. Extract the 104-feature JPEG forensic descriptor.
+2. Add 91 interaction features from the most discriminative DCT and quantization features.
+3. Standardize features with the saved `StandardScaler`.
+4. Run five LightGBM models trained with independent seeds: `42`, `123`, `777`, `2024`, and `9999`.
+5. Average the five AI probabilities.
+6. Classify as AI-generated when the final probability is `>= 0.50`.
+
+The SPN/noise-residual module and camera-signature checks are available as investigative context, but they are not fused into the final score. The operational decision is the LightGBM bitstream ensemble only.
+
+---
+
+## Dataset
+
+The balanced training set uses 469,566 real images and 469,566 AI images.
+
+| Split | Real | AI | Total |
+| --- | ---: | ---: | ---: |
+| Train | 328,695 | 328,696 | 657,391 |
+| Validation | 46,957 | 46,957 | 93,914 |
+| Test | 93,913 | 93,914 | 187,827 |
+
+The AI side spans 30+ generator families, including GAN, VAE, and diffusion model families such as StyleGAN, BigGAN, DDPM, Stable Diffusion, GLIDE, and related generators. Training includes faces, landscapes, objects, artwork, and other heterogeneous image categories.
+
+To improve robustness to social-media style recompression, 20% of real-image feature extraction applies JPEG re-save augmentation at quality 70-85.
 
 ---
 
 ## Project Structure
 
-```
-├── web_app.py              # Flask web server with heatmap and predict endpoints
-├── api.py                  # Swagger REST API (/api/docs) with JWT auth
-├── auth.py                 # JWT authentication + role-based access control
-├── models.py               # SQLAlchemy DB models (User, AnalysisHistory)
-├── ensemble_detector.py    # Ensemble AI detector (bitstream + SPN + attribution)
-├── bitstream_features.py   # JPEG forensic feature extraction (70 features)
-├── spn_fingerprint.py      # SPN/PRNU sensor pattern noise analysis
-├── ai_model_attribution.py # Identifies DALL-E / Midjourney / SD / Firefly
-├── ai_region_heatmap.py    # Block-level heatmap overlay
-├── detect.py               # CLI detector (single image)
+```text
+├── web_app.py              # Flask web interface and upload/predict routes
+├── api.py                  # REST API, Swagger docs, JWT auth, user/history routes
+├── auth.py                 # Authentication helpers and role-based access
+├── models.py               # SQLAlchemy models for users and analysis history
+├── ensemble_detector.py    # LightGBM bitstream ensemble + optional context modules
+├── bitstream_features.py   # 104-feature JPEG forensic extractor
+├── spn_fingerprint.py      # Noise residual / PRNU-style investigative heuristic
+├── ai_model_attribution.py # Qualitative generator-family attribution helper
+├── ai_region_heatmap.py    # Experimental region visualization helper
+├── detect.py               # Command-line detector
+├── train_improved.py       # Model training pipeline
+├── kaggle_retrain.py       # Kaggle-oriented retraining workflow
+├── figures/                # Evaluation and architecture figures
 ├── templates/
 │   └── index.html          # Web UI
-├── requirements.txt        # Python dependencies
-└── bitstream_detector_local.pth  # Trained model weights
+└── requirements.txt        # Python dependencies
 ```
 
 ---
@@ -58,17 +116,13 @@ AI-generated images (from tools like DALL·E 3, Midjourney, Stable Diffusion, Ad
 git clone https://github.com/kumarswamyg2005/Real-image-vs-AI-image-using-jpeg-compression.git
 cd Real-image-vs-AI-image-using-jpeg-compression
 
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+pip install lightgbm
 ```
 
-### Requirements
-
-- Python 3.8+
-- PyTorch, TensorFlow
-- OpenCV, Pillow, pillow-heif
-- Flask, flask-restx, flask-jwt-extended, flask-sqlalchemy
-- NumPy, SciPy, scikit-learn, XGBoost
-- bcrypt
+The detector expects a trained `.pth` checkpoint that contains the five LightGBM models, the scaler, interaction-feature metadata, and model metadata.
 
 ---
 
@@ -80,114 +134,98 @@ pip install -r requirements.txt
 python web_app.py
 ```
 
-Opens at `http://localhost:5001` (auto-selects next available port if busy). Upload any image to get an instant classification with confidence score, model breakdown, and AI model attribution.
+The app starts on `http://localhost:5001` by default and selects the next free port if needed.
 
-### Command-Line Interface
+### Command Line
 
 ```bash
 python detect.py path/to/image.jpg
 ```
 
-Supports JPEG, PNG, WebP, HEIC/HEIF, TIFF, BMP.
-
 ### REST API
 
-Full Swagger documentation available at `http://localhost:5001/api/docs`.
+Swagger documentation is available at:
 
-**Predict endpoint:**
+```text
+http://localhost:5001/api/docs
+```
+
+Predict endpoint:
 
 ```bash
 curl -X POST -F "file=@your_image.jpg" http://localhost:5001/predict
 ```
 
-**Response:**
+Example response:
 
 ```json
 {
   "is_ai": true,
   "label": "AI-Generated",
-  "confidence": 87.2,
-  "ai_score": 87.2,
-  "real_score": 12.8,
-  "model": "Bitstream Forensics + SPN + Attribution",
-  "method": "JPEG Compression Forensics",
-  "image_format": "jpeg",
-  "breakdown": {
-    "bitstream": { "ai_prob": 90.1, "weight": 95.0 },
-    "spn": { "ai_prob": 72.0, "is_camera_noise": false },
-    "camera": { "is_camera": false, "confidence": 0.1 }
-  },
-  "attribution": {
-    "top_model": "Stable Diffusion",
-    "top_confidence": 0.83,
-    "is_ai_generated": true,
-    "scores": { "stable_diffusion": 0.83, "dall_e": 0.12, "midjourney": 0.05 }
+  "confidence": 94.2,
+  "ai_probability": 0.942,
+  "real_probability": 0.058,
+  "model": "Bitstream Forensics (100%) - SPN available as investigative heuristic only",
+  "method": "Trained bitstream ensemble (alpha_SPN=0.00)",
+  "model_breakdown": {
+    "bitstream": {
+      "ai_probability": 0.942,
+      "ensemble_seeds": [42, 123, 777, 2024, 9999],
+      "weight": 1.0
+    },
+    "spn": {
+      "weight": 0.0
+    },
+    "camera_signature": {
+      "weight": 0,
+      "note": "Informational only - not used in score"
+    }
   }
 }
 ```
 
-**Heatmap endpoint:**
+---
 
-```bash
-curl -X POST -H "Content-Type: application/json" \
-  -d '{"filepath": "/uploads/<filename>"}' \
-  http://localhost:5001/heatmap
-```
+## Input Scope
 
-Returns a base64-encoded RGBA PNG overlay highlighting AI-pattern regions (blue/green = real, yellow/red = AI).
+BitstreamGuard is designed and evaluated for JPEG-compression forensics. The core features are defined around JPEG DCT coefficients, quantization behavior, block artifacts, and JPEG header metadata.
+
+Some application code can load formats such as PNG, WebP, HEIC, TIFF, and BMP by converting them before analysis, but the reported 94.17% result is for the JPEG forensic setting. Treat non-JPEG predictions as convenience outputs, not validated performance claims.
 
 ---
 
-## Authentication & Roles
+## Authentication And Roles
 
-The `/api` endpoints are protected by JWT. Default credentials:
+The `/api` routes support JWT authentication and role-based access.
 
-| Role    | Username | Password   | Access                                  |
-| ------- | -------- | ---------- | --------------------------------------- |
-| admin   | admin    | admin123   | Full access + user management           |
-| analyst | —        | —          | Image analysis + heatmap + history      |
-| user    | —        | —          | Basic image analysis only               |
+| Role | Access |
+| --- | --- |
+| admin | User management, stats, and all analysis routes |
+| analyst | Image analysis, heatmap helper, and history |
+| user | Basic image analysis |
 
-> **Change the default admin password in production.**
-
----
-
-## How JPEG Forensics Detects AI Images
-
-### DCT Coefficient Analysis
-Real camera photos produce characteristic DCT coefficient distributions. AI images show different statistical patterns in their frequency-domain coefficients even after JPEG compression.
-
-### Quantization Table Fingerprinting
-Real cameras embed firmware-specific quantization tables. AI images use generic or software-defined tables detectable through pattern analysis.
-
-### Blocking Artifact Detection
-JPEG 8×8 block boundary artifacts differ between real photos (captured and compressed once) and AI images (generated then compressed).
-
-### Benford's Law
-The first-digit distribution of DCT coefficients in natural images follows Benford's Law. AI images often deviate from this pattern.
-
-### SPN Sensor Pattern Noise
-Every real camera sensor has unique PRNU imperfections present in every photo. AI images completely lack this physical noise signature, making it a strong discriminator.
+Default local admin credentials are configured for development. Change them before any deployment.
 
 ---
 
-## AI Model Attribution
+## Limitations
 
-The attribution module identifies which generative model produced an image by analyzing:
-
-- **DALL-E 3** — Smooth low-frequency bias and JPEG post-processing signature
-- **Midjourney** — Upsampling artifacts at 2× grid boundaries and high-frequency sharpening
-- **Stable Diffusion** — Latent-space grid artifacts at 64-pixel periodicity, VAE spectral peaks
-- **Adobe Firefly** — Luminance-channel smoothing and artificial color saturation pattern
+- The model produces an image-level AI probability; region-level localization is experimental and not part of the validated classifier.
+- JPEG quality-100 AI exports can be harder because flat quantization tables resemble high-quality camera output.
+- Cross-scene evaluation on completely separate real-image sources has not been fully validated.
+- A determined adversary could try to manipulate DCT statistics to imitate natural JPEG traces.
+- The SPN/noise-residual module is a heuristic aid, not true camera fingerprint matching with a reference camera database.
+- Outputs should be used as screening signals that require human review, not as the sole basis for high-stakes decisions.
 
 ---
 
 ## Tech Stack
 
-- **Backend:** Flask, PyTorch, TensorFlow, OpenCV
-- **Forensics:** DCT analysis, quantization fingerprinting, Benford's Law, SPN/PRNU
-- **Model:** ResNet50 backbone + custom forensic feature layer + LightGBM ensemble
-- **API:** flask-restx (Swagger UI), JWT authentication, SQLite + SQLAlchemy
+- **Language:** Python 3.10
+- **Model:** Five-seed LightGBM GBDT ensemble
+- **Features:** JPEG DCT statistics, Benford's Law, double-compression FFT, wavelets, LBP, color, edge, chroma metadata
+- **ML tooling:** scikit-learn, LightGBM, PyWavelets, PyTorch checkpoint serialization
+- **Backend:** Flask, flask-restx, JWT auth, SQLAlchemy
 - **Frontend:** HTML/CSS/JavaScript
 
 ---

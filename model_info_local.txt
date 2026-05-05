@@ -1,22 +1,34 @@
-🎯 LOCAL BITSTREAM TRAINING RESULTS
+LIGHTGBM TRAINING RESULTS
 ==================================================
 
-Model Type: random_forest
-Accuracy: 75.94%
-Features: 70 (Pure Bitstream)
-Training Method: DCT, Quantization, Benford's Law
-Training Samples: 348,385
-Test Samples: 87,097
-Real Images: 209,648
-Fake Images: 225,834
-Total Images: 435,482
+=== Standard (Imbalanced) ===
+Accuracy:        90.93%
+Balanced Acc:    89.69%
+Real Accuracy:   85.7%
+AI Accuracy:     93.6%
+Precision (AI):  92.7%
+Recall (AI):     93.6%
+F1 (AI):         93.14%
+False Pos Rate:  14.3%
+TN=80,550  FP=13,389  FN=11,506  TP=169,088
 
-Datasets Used:
-  - CIFAKE Dataset
-  - 140k Real and Fake Faces
-  - Additional deepfake datasets
+=== Balanced (is_unbalance=True) ===
+Accuracy:        81.22%
+Balanced Acc:    79.31%
+Real Accuracy:   73.3%
+AI Accuracy:     85.4%
+Precision (AI):  86.0%
+Recall (AI):     85.4%
+F1 (AI):         85.67%
+False Pos Rate:  26.7%
+TN=68,813  FP=25,126  FN=26,433  TP=154,161
 
-All Model Accuracies:
-  - random_forest: 75.94%
-  - gradient_boosting: 74.28%
-  - neural_network: 71.74%
+Features:        70
+Training Samples:1,098,132
+Test Samples:    274,533
+Real Images:     469,696
+AI Images:       902,969
+
+Datasets:
+  - datasets/1 + datasets/data  (469,696 real + 468,823 fake)
+  - datasets/30_gn  (0 real + 434,255 AI)

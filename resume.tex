@@ -1,0 +1,165 @@
+%-------------------------
+% Jake's Resume Template - A4
+%-------------------------
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{iftex}
+\usepackage[a4paper, top=0.6in, bottom=0.6in, left=0.65in, right=0.65in]{geometry}
+\ifPDFTeX
+  \input{glyphtounicode}
+\fi
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\ifPDFTeX
+  \pdfgentounicode=1
+\fi
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-2pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=-1pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Kumaraswamy} \\ \vspace{4pt}
+    {\small
+        \underline{8688219055} \enspace $|$ \enspace
+        \href{mailto:nagakumaraswamy.g23@iiits.in}{\underline{nagakumaraswamy.g23@iiits.in}} \enspace $|$ \enspace
+        \href{https://github.com/kumarswamyg2005}{\underline{github.com/kumarswamyg2005}}
+    }
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Indian Institute of Information Technology, Sri City}{Chittoor, AP}
+      {Bachelor of Technology -- Computer Science \& Engineering}{Currently 3rd Year}
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C/C++, JavaScript (ES6+), SQL} \\
+     \textbf{Computer Vision / AI}{: OpenCV, PyTorch, EfficientNet-B0, ONNX, Deep Learning, CNNs} \\
+     \textbf{Frameworks \& Tools}{: FastAPI, React, Node.js, Express.js, MongoDB, Redis, Docker, Git, Linux, Postman} \\
+     \textbf{Concepts}{: Real-Time Video Processing, Object Detection, RESTful APIs, MVC Architecture, CI/CD, Session Auth}
+    }}
+ \end{itemize}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{Real Image vs AI Image Detection} $|$ \emph{Python, Flask, PyTorch, OpenCV, JPEG Forensics}}
+          {\href{https://github.com/kumarswamyg2005/Real-image-vs-AI-image-using-jpeg-compression}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Built an AI-vs-real image detector using JPEG bitstream forensics, DCT coefficient statistics, quantization-table analysis, blocking artifacts, Benford's Law features, and camera-signature checks.}
+            \resumeItem{Developed a Flask web app and CLI workflow with image upload, confidence scoring, model breakdowns, AI-model attribution, and region heatmap visualization for forensic inspection.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{DesignDen -- Clothing E-Commerce Platform} $|$ \emph{Node.js, Express, MongoDB, Redis, Docker}}
+          {\href{https://github.com/kumarswamyg2005/design-den1}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Built a full-stack multi-role web app (5 roles: Admin, Manager, Designer, Customer, Delivery) with role-specific dashboards, 16-state order lifecycle, real-time chat, and 8-milestone production tracking.}
+            \resumeItem{Implemented \textbf{Redis caching} (97\% query speedup), 14 MongoDB indexes, \textbf{Docker} containerisation, GitHub Actions CI/CD pipeline, and 84 passing Jest unit tests across auth, orders, and utils.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{CropScan -- AI Crop Disease Detector} $|$ \emph{Python, PyTorch, EfficientNet-B0, FastAPI, React}}
+          {\href{https://github.com/kumarswamyg2005/Crop-Disease-Detector}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Fine-tuned \textbf{EfficientNet-B0} on PlantVillage dataset (54,306 images, 38 classes) achieving \textbf{99.3\% accuracy}; trained on GPU via Google Colab with data augmentation and transfer learning.}
+            \resumeItem{Built image-classification pipeline with top-3 confidence predictions, bounding-region analysis, and treatment recommendations; deployed frontend on Vercel and FastAPI backend on Render.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{SignBridge -- Real-Time Sign Language Translator} $|$ \emph{Python, OpenCV, MS-ASL Dataset, JS}}
+          {\href{https://github.com/kumarswamyg2005/SignBridge}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Developed a real-time AI web app performing \textbf{live gesture recognition} using OpenCV; processed continuous video frames to classify hand signs from a 2,000+ sign dictionary with voice-input support.}
+            \resumeItem{Engineered speed-controlled playback, live status indicators, and translation history logging with a terminal-inspired responsive UI.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{3D Traffic Simulator} $|$ \emph{C++11, OpenGL, GLUT, Custom Physics Engine}}
+          {\href{https://github.com/kumarswamyg2005/Traffic-simulator}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Built a 5,890-line C++ simulation with \textbf{multi-camera modes} (free, follow-car, follow-pedestrian, bird's-eye), adaptive traffic light timing, and LOD-based rendering at 60 FPS.}
+            \resumeItem{Implemented \textbf{bounding-box collision detection}, particle-based weather effects, and procedural city with 220+ pedestrians and 100+ vehicles simultaneously.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{StockSense AI -- Stock Price Predictor} $|$ \emph{Python, PyTorch, ONNX, FastAPI, React}}
+          {\href{https://github.com/kumarswamyg2005/StockSense-Ai}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Trained an \textbf{LSTM-attention model} (100 epochs, Google Colab GPU) and exported to \textbf{ONNX} for runtime-agnostic inference; 7-day predictions with confidence bounds for Indian and US stocks.}
+            \resumeItem{Generated Buy/Hold/Sell signals using technical indicators; full ML pipeline: training $\rightarrow$ ONNX export $\rightarrow$ optimized inference deployed on Vercel and Render.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------COURSEWORK & INTERESTS-----------
+\section{Coursework \& Interests}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Coursework}{: Data Structures \& Algorithms, OOP, DBMS, Computer Networks, Operating Systems, Multimedia Systems} \\
+     \textbf{Interests}{: Computer Vision, Video Analytics, Full-Stack Development, Deep Learning, Real-Time Systems, Open Source}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
